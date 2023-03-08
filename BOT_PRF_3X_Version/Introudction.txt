@@ -1,0 +1,47 @@
+The BOT system works with STM32WB55 32Bits microcontroller that uses four different buses:
+
+	1.1) I2C Bus, running at 1Mhz.
+	1.2) UART Bus, in mode async and 115Kbps.
+	1.3) SPI with clock around 85 Mhz.
+	1.4) USB bus in mode 2.0.
+
+
+The systems includes BLE MESH Node that works like controller of light, considering the Light ON/OFF
+and their Dimmer control like principal outputs. But the communication with the Provisioner of the
+system is through another sub-system that communicates in mode wireless with MESH protocol encrypted.
+
+
+The inputs of BOT systems are:
+
+	A.1) SW1 (Switch 1), dedicated to activated the provisioner action for MESH protocol; this 
+             is allocated on Port A and Pin 10, in mode PullUp, considering and IRQ assigned to the
+	     the PIN, looking the FALLING effect to act.
+
+	A.2) PIR Input, dedicated to receive the Sensor Signal that acts 
+
+	(THIS CONFIGURATION IS ON START UP) BEFORE THE UART CONFIGURATION.
+
+	GPIOA_10
+		PULL --> GPIO_PULLUP
+		MODE --> GPIO_MODE_IT_FALLING
+	
+	GPIOA_2
+		PULL --> GPIO_NOPULL
+		MODE --> GPIO_MODE_IT_RISING
+
+
+
+		(UART INTERFACE)
+	GPIOB_6
+		(TX)
+	GPIOB_7
+		(RX)
+
+
+
+		(I2C INTERFACE)
+	
+	GPIOB_8
+		(SCL)
+	GPIOB_9
+		(SDA)
